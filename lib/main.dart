@@ -1,5 +1,5 @@
-import 'package:buoi3/screen/Home.dart';
-import 'package:buoi3/screen/detail.dart';
+import 'package:buoi3/screen/BottomNavigationBar.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,12 +23,7 @@ class MyApp extends StatelessWidget {
       //   // When navigating to the "/second" route, build the SecondScreen widget.
       //   '/second': (context) => const login(),
       // },
-      home: Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('Home'),
-        // ),
-        body: const Detail(),
-      ),
+      home: BottomTab(),
     );
   }
 }

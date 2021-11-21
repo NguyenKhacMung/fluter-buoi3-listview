@@ -1,5 +1,5 @@
-import 'dart:developer';
-
+import 'package:buoi3/component/ListH.dart';
+import 'package:buoi3/component/ListV.dart';
 import 'package:flutter/material.dart';
 
 const List<Item> _items = [
@@ -41,6 +41,45 @@ const List<Item> _items = [
   ),
 ];
 
+const List<Item> _itemsTable = [
+  Item(
+    name: 'Lorem Chair',
+    totalPriceCents: 99999,
+    star: '4.9',
+    imageProvider: AssetImage('images/listt1.png'),
+  ),
+  Item(
+    name: 'Lorem Chair',
+    totalPriceCents: 99999,
+    star: '4.9',
+    imageProvider: AssetImage('images/listt2.png'),
+  ),
+  Item(
+    name: 'Chicken Parmesan',
+    totalPriceCents: 99988,
+    star: '5',
+    imageProvider: AssetImage('images/list3.png'),
+  ),
+  Item(
+    name: 'Spinach Pizza',
+    totalPriceCents: 1299,
+    star: '4.9',
+    imageProvider: AssetImage('images/listt4.png'),
+  ),
+  Item(
+    name: 'Veggie Delight',
+    totalPriceCents: 99999,
+    star: '4',
+    imageProvider: AssetImage('images/listt5.png'),
+  ),
+  Item(
+    name: 'Chicken Parmesan',
+    totalPriceCents: 99988,
+    star: '5',
+    imageProvider: AssetImage('images/listt6.png'),
+  ),
+];
+
 const List<ItemH> ItemsH = [
   ItemH(
     name: 'Lorem Chair',
@@ -77,6 +116,45 @@ const List<ItemH> ItemsH = [
     totalPriceCents: 99999,
     subTitle: 'Chill, Comfortable',
     imageProvider: AssetImage('images/list2.png'),
+  ),
+];
+
+const List<ItemH> ItemsHTable = [
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 99988,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/listt3.png'),
+  ),
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 1299,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/listt4.png'),
+  ),
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 99999,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/list5.png'),
+  ),
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 99988,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/listt6.png'),
+  ),
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 99999,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/listt1.png'),
+  ),
+  ItemH(
+    name: 'Lorem Chair',
+    totalPriceCents: 99999,
+    subTitle: 'Chill, Comfortable',
+    imageProvider: AssetImage('images/listt2.png'),
   ),
 ];
 
@@ -213,8 +291,9 @@ class _HomeState extends State<Home> {
                       width: 87,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color:
-                            index == Active ? Colors.amber[600] : Colors.white,
+                        color: index == Active
+                            ? Colors.amber[600]
+                            : Color(0xffffff),
                       ),
                       child: TextButton(
                         onPressed: () {
@@ -254,84 +333,13 @@ class _HomeState extends State<Home> {
             Container(
               height: 209,
               width: size.width,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final item = _items[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Container(
-                        height: double.infinity,
-                        width: 156,
-                        padding: EdgeInsets.fromLTRB(10, 10, 15, 15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: Color(0xFFDDE5E9),
-                            width: 1,
-                          ),
-                          color: Color(0xFFFFFFFF),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image(
-                                image: item.imageProvider,
-                                width: 129,
-                                height: 129,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 13,
-                            ),
-                            Text(
-                              item.name,
-                              style: TextStyle(
-                                  color: Color(0xFF081D43),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: 7,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xFFF0A113),
-                                  size: 14,
-                                ),
-                                Text(
-                                  item.star,
-                                  style: TextStyle(
-                                      color: Color(0xFF081D43),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      item.formattedTotalItemPrice,
-                                      style: TextStyle(
-                                          color: Color(0xFF081D43),
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
+              child: ListH(
+                items: Active == 1 ? _itemsTable : _items,
+                click: () {
+                  const snackBar = SnackBar(content: Text('Tap'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+              ),
             ),
             SizedBox(
               height: 25,
@@ -351,147 +359,17 @@ class _HomeState extends State<Home> {
             ),
             Container(
               height: 300,
-              child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: ItemsH.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final item = ItemsH[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Container(
-                        height: 147,
-                        padding: EdgeInsets.all(9),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: Color(0xFFDDE5E9),
-                            width: 1,
-                          ),
-                          color: Color(0xFFFFFFFF),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image(
-                                image: item.imageProvider,
-                                width: 129,
-                                height: 129,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: 25,
-                                ),
-                                Text(
-                                  item.name,
-                                  style: TextStyle(
-                                      color: Color(0xFF081D43),
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 3,
-                                ),
-                                Text(
-                                  item.subTitle,
-                                  style: TextStyle(
-                                      color: Color(0xFF081D43).withOpacity(0.7),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFF0A113),
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFF0A113),
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFF0A113),
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFF0A113),
-                                      size: 14,
-                                    ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFF0A113),
-                                      size: 14,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 12,
-                                ),
-                                Text(
-                                  item.formattedTotalItemPrice,
-                                  style: TextStyle(
-                                      color: Color(0xFF081D43),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  }),
+              child: ListV(
+                items: Active == 1 ? ItemsHTable : ItemsH,
+                click: () {
+                  const snackBar = SnackBar(content: Text('Tap'));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+              ),
             ),
           ],
         ),
       ),
     );
   }
-}
-
-@immutable
-class Item {
-  const Item({
-    required this.totalPriceCents,
-    required this.name,
-    required this.star,
-    required this.imageProvider,
-  });
-  final int totalPriceCents;
-  final String name;
-  final String star;
-  final ImageProvider imageProvider;
-  String get formattedTotalItemPrice =>
-      '\Rp.${(totalPriceCents / 1000.0).toStringAsFixed(3)}';
-}
-
-@immutable
-class ItemH {
-  const ItemH({
-    required this.totalPriceCents,
-    required this.name,
-    required this.subTitle,
-    required this.imageProvider,
-  });
-  final int totalPriceCents;
-  final String name;
-  final String subTitle;
-  final ImageProvider imageProvider;
-  String get formattedTotalItemPrice =>
-      '\Rp.${(totalPriceCents / 1000.0).toStringAsFixed(3)}';
 }

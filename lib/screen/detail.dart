@@ -24,6 +24,7 @@ class _DetailState extends State<Detail> {
                     Icons.arrow_back_ios,
                     size: 18,
                   ),
+                  iconSize: 10,
                 ),
                 Text(
                   "Detail",
@@ -33,9 +34,12 @@ class _DetailState extends State<Detail> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Icon(
-                  Icons.favorite_border,
-                  size: 18,
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.favorite_border,
+                    size: 18,
+                  ),
                 )
               ],
             ),
