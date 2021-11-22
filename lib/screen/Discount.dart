@@ -1,4 +1,5 @@
 import 'package:buoi3/component/ListV.dart';
+import 'package:buoi3/route/path.dart';
 
 import 'package:flutter/material.dart';
 
@@ -124,7 +125,7 @@ class _DiscountState extends State<Discount> {
               child: ListV(
                 items: ItemsH,
                 click: () {
-                  Navigator.pushNamed(context, "/register");
+                  Navigator.pushNamed(context, detailPath);
                 },
               ),
             ),

@@ -1,7 +1,6 @@
 import 'package:buoi3/route/path.dart';
+import 'package:buoi3/route/routes.dart';
 import 'package:flutter/material.dart';
-
-import 'route/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       //   '/second': (context) => const login(),
       // },
       // home: BottomTab(),
-      initialRoute: splashPath,
+      initialRoute: homePath,
       routes: routes,
     );
   }

@@ -1,5 +1,6 @@
 import 'package:buoi3/component/ListH.dart';
 import 'package:buoi3/component/ListV.dart';
+import 'package:buoi3/route/path.dart';
 import 'package:flutter/material.dart';
 
 const List<Item> _items = [
@@ -336,7 +337,7 @@ class _HomeState extends State<Home> {
               child: ListH(
                 items: Active == 1 ? _itemsTable : _items,
                 click: () {
-                  Navigator.pushNamed(context, "/register");
+                  Navigator.pushNamed(context, detailPath);
                 },
               ),
             ),
@@ -361,7 +362,7 @@ class _HomeState extends State<Home> {
               child: ListV(
                 items: Active == 1 ? ItemsHTable : ItemsH,
                 click: () {
-                  Navigator.pushNamed(context, "/register");
+                  Navigator.pushNamed(context, detailPath);
                 },
               ),
             ),

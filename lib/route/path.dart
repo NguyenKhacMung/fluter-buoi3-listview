@@ -1,2 +1,2 @@
-final String splashPath = '/';
+final String homePath = '/';
 final String detailPath = '/detail';

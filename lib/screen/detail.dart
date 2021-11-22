@@ -1,6 +1,8 @@
+import 'package:buoi3/route/path.dart';
 import 'package:flutter/material.dart';
 
 class Detail extends StatefulWidget {
+  static String path = detailPath;
   const Detail({Key? key}) : super(key: key);
 
   @override
@@ -8,6 +10,7 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+  int count = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,9 +114,11 @@ class _DetailState extends State<Detail> {
                           height: double.infinity,
                           child: TextButton(
                             onPressed: () {
-                              const snackBar = SnackBar(content: Text('Tap'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              if (count > 1) {
+                                setState(() {
+                                  count--;
+                                });
+                              }
                             },
                             child: Center(
                               child: Icon(
@@ -125,7 +130,7 @@ class _DetailState extends State<Detail> {
                           ),
                         ),
                         Text(
-                          "1",
+                          "${count}",
                           style: TextStyle(
                             color: Color(0xFF404040),
                             fontSize: 20,
@@ -141,9 +146,9 @@ class _DetailState extends State<Detail> {
                           height: double.infinity,
                           child: TextButton(
                             onPressed: () {
-                              const snackBar = SnackBar(content: Text('Tap'));
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(snackBar);
+                              setState(() {
+                                count++;
+                              });
                             },
                             child: Center(
                               child: Icon(
@@ -228,7 +233,7 @@ class _DetailState extends State<Detail> {
                     child: Align(
                       alignment: Alignment.centerRight,
                       child: Text(
-                        "Total  Rp. 99.999",
+                        "Total  Rp. ${count * 99.999}",
                         style: TextStyle(
                           color: Color(0xFF404040),
                           fontSize: 18,

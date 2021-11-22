@@ -1,10 +1,11 @@
-import 'package:buoi3/component/Discount.dart';
+import 'package:buoi3/route/path.dart';
+import 'package:buoi3/screen/Discount.dart';
 import 'package:buoi3/screen/Home.dart';
-import 'package:buoi3/screen/demo.dart';
-import 'package:buoi3/screen/detail.dart';
 import 'package:flutter/material.dart';
 
 class BottomTab extends StatefulWidget {
+  static String path = homePath;
+
   const BottomTab({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +21,6 @@ class _BottomTabState extends State<BottomTab> {
 //     Discount(
 //       back: (){},
 //     ),
-//     Detail(),
-//     ExampleDragAndDrop(),
 //   ];
 
   void _onItemTapped(int index) {
@@ -54,7 +53,6 @@ class _BottomTabState extends State<BottomTab> {
             back: previousPage,
           ),
           // Detail(),
-          // ExampleDragAndDrop(),
         ],
         onPageChanged: _onItemTapped,
       ),
