@@ -72,8 +72,8 @@ const List<ItemH> ItemsH = [
 ];
 
 class Discount extends StatefulWidget {
-  const Discount({Key? key}) : super(key: key);
-
+  const Discount({Key? key, required this.back}) : super(key: key);
+  final Function back;
   @override
   _DiscountState createState() => _DiscountState();
 }
@@ -94,7 +94,9 @@ class _DiscountState extends State<Discount> {
                   left: 0,
                   top: -10,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      widget.back();
+                    },
                     icon: Icon(
                       Icons.arrow_back_ios,
                       size: 18,
@@ -122,8 +124,7 @@ class _DiscountState extends State<Discount> {
               child: ListV(
                 items: ItemsH,
                 click: () {
-                  const snackBar = SnackBar(content: Text('Tap'));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, "/register");
                 },
               ),
             ),

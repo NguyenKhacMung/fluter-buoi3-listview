@@ -336,8 +336,7 @@ class _HomeState extends State<Home> {
               child: ListH(
                 items: Active == 1 ? _itemsTable : _items,
                 click: () {
-                  const snackBar = SnackBar(content: Text('Tap'));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, "/register");
                 },
               ),
             ),
@@ -362,8 +361,7 @@ class _HomeState extends State<Home> {
               child: ListV(
                 items: Active == 1 ? ItemsHTable : ItemsH,
                 click: () {
-                  const snackBar = SnackBar(content: Text('Tap'));
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, "/register");
                 },
               ),
             ),

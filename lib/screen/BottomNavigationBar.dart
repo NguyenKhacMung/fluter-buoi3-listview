@@ -13,18 +13,31 @@ class BottomTab extends StatefulWidget {
 
 class _BottomTabState extends State<BottomTab> {
   int _selectedIndex = 0;
+  final PageController _pageController = PageController();
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Discount(),
-    Detail(),
-    ExampleDragAndDrop(),
-  ];
+// static const List<Widget> _widgetOptions = <Widget>[
+//     Home(),
+//     Discount(
+//       back: (){},
+//     ),
+//     Detail(),
+//     ExampleDragAndDrop(),
+//   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void onTabTapped(int index) {
+    this._pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+  }
+
+  void previousPage() {
+    this._pageController.animateToPage(_selectedIndex - 1,
+        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 
   @override
@@ -33,31 +46,45 @@ class _BottomTabState extends State<BottomTab> {
       // appBar: AppBar(
       //   title: const Text('Home'),
       // ),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: PageView(
+        controller: _pageController,
+        children: <Widget>[
+          Home(),
+          Discount(
+            back: previousPage,
+          ),
+          // Detail(),
+          // ExampleDragAndDrop(),
+        ],
+        onPageChanged: _onItemTapped,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.brightness_5),
+            label: 'Discount',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'cart',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.supervised_user_circle,
+              Icons.person_outlined,
             ),
-            label: 'School',
+            label: 'Profile',
           ),
         ],
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
+        selectedItemColor: Color(0xFFF7CC74),
+        unselectedItemColor: Color(0xFFBFBFBF),
+        onTap: onTabTapped,
       ),
     );
   }
